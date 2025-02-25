@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">AplicatiaMea</string>
+    <string name="button_text">Apasa</string>
+    <string name="hello_text">Salut Lume!</string>
+    <string name="name_hint">Nume</string>
+    <string name="Button_Pushed_string">Dima Vlad</string>
 </resources>

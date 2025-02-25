@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mon Application</string>
+    <string name="button_text">Appuie-moi</string>
+    <string name="hello_text">Bonjour le monde!</string>
+    <string name="name_hint">Nom</string>
+    <string name="Button_Pushed_string">Texte modifié!</string>
+</resources>

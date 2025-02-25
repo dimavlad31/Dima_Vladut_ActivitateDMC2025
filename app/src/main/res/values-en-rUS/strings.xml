@@ -4,4 +4,8 @@
     <string name="hello_text">Hello World!</string>
     <string name="name_hint">Name</string>
     <string name="Button_Pushed_string">Dima Vlad</string>
+    <string name="Number1">Enter your number</string>
+    <string name="Number2">Enter your number</string>
+
+    <string name="Result">Result</string>
 </resources>

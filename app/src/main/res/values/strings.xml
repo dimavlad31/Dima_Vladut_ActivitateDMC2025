@@ -4,4 +4,7 @@
     <string name="hello_text">Salut Lume!</string>
     <string name="name_hint">Nume</string>
     <string name="Button_Pushed_string">Dima Vlad</string>
+    <string name="Number1">Introdu numarul</string>
+    <string name="Number2">Introdu numarul</string>
+    <string name="Result">Rezultatul</string>
 </resources>

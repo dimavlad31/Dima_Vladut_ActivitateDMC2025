@@ -4,4 +4,8 @@
     <string name="hello_text">Bonjour le monde!</string>
     <string name="name_hint">Nom</string>
     <string name="Button_Pushed_string">Texte modifié!</string>
+    <string name="Number1">Introdu numarul</string>
+    <string name="Number2">Introdu numarul</string>
+
+    <string name="Result">Result</string>
 </resources>

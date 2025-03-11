@@ -27,32 +27,24 @@ public class Activitate2Lab4 extends AppCompatActivity {
             return insets;
         });
 
-        ArrayAdapter<ViDeoproiector.TipProiector> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, ViDeoproiector.TipProiector.values());
+        ArrayAdapter<ViDeoProiector.TipProiector> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, ViDeoProiector.TipProiector.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner spinnerTipProiector=findViewById(R.id.spinner_tip_proiector);
+        Spinner spinnerTipProiector = findViewById(R.id.spinner_tip_proiector);
         spinnerTipProiector.setAdapter(adapter);
 
         Button buttonSubmit = findViewById(R.id.button_submit);
         buttonSubmit.setOnClickListener(v -> {
-            EditText inputMarca = findViewById(R.id.input_marca);
-            EditText inputRezolutie = findViewById(R.id.input_rezolutie);
-            EditText inputLuminozitate = findViewById(R.id.input_luminozitate);
-            Switch switchPortabil = findViewById(R.id.switch_portabil);
-            Spinner spinnerTipProiector2 = findViewById(R.id.spinner_tip_proiector);
+            String marca = ((EditText) findViewById(R.id.input_marca)).getText().toString();
+            int rezolutie = Integer.parseInt(((EditText) findViewById(R.id.input_rezolutie)).getText().toString());
+            double luminozitate = Double.parseDouble(((EditText) findViewById(R.id.input_luminozitate)).getText().toString());
+            boolean portabil = ((Switch) findViewById(R.id.switch_portabil)).isChecked();
+            ViDeoProiector.TipProiector tip = (ViDeoProiector.TipProiector) spinnerTipProiector.getSelectedItem();
 
-            String marca = inputMarca.getText().toString();
-            int rezolutie = Integer.parseInt(inputRezolutie.getText().toString());
-            double luminozitate = Double.parseDouble(inputLuminozitate.getText().toString());
-            boolean portabil = switchPortabil.isChecked();
-            ViDeoproiector.TipProiector tip = (ViDeoproiector.TipProiector) spinnerTipProiector2.getSelectedItem();
+            ViDeoProiector proiector = new ViDeoProiector(marca, rezolutie, luminozitate, portabil, tip);
 
             Intent returnIntent = new Intent();
-            returnIntent.putExtra("marca", marca);
-            returnIntent.putExtra("rezolutie", rezolutie);
-            returnIntent.putExtra("luminozitate", luminozitate);
-            returnIntent.putExtra("portabil", portabil);
-            returnIntent.putExtra("tip", tip);
+            returnIntent.putExtra("proiector", proiector);
             setResult(RESULT_OK, returnIntent);
             finish();
         });

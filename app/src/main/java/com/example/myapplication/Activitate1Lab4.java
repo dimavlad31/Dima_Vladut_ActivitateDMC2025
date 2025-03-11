@@ -3,10 +3,6 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -15,49 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-class ViDeoproiector {
-    public enum TipProiector { LED, LASER, DLP, LCD }
-
-    private String marca;
-    private int rezolutie;
-    private double luminozitate;
-    private boolean portabil;
-    private TipProiector tip;
-
-    public ViDeoproiector(String marca, int rezolutie, double luminozitate, boolean portabil, TipProiector tip) {
-        this.marca = marca;
-        this.rezolutie = rezolutie;
-        this.luminozitate = luminozitate;
-        this.portabil = portabil;
-        this.tip = tip;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public int getRezolutie() {
-        return rezolutie;
-    }
-
-    public double getLuminozitate() {
-        return luminozitate;
-    }
-
-    public boolean isPortabil() {
-        return portabil;
-    }
-
-    public TipProiector getTip() {
-        return tip;
-    }
-}
-
 public class Activitate1Lab4 extends AppCompatActivity {
 
-    private EditText inputMarca, inputRezolutie, inputLuminozitate;
-    private Switch switchPortabil;
-    private Spinner spinnerTipProiector;
     private TextView textMarca, textRezolutie, textLuminozitate, textPortabil, textTip;
 
     @Override
@@ -70,23 +25,22 @@ public class Activitate1Lab4 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        // Inițializare view-uri pentru afișarea datelor
+        Clasa a;
         textMarca = findViewById(R.id.text_marca);
         textRezolutie = findViewById(R.id.text_rezolutie);
         textLuminozitate = findViewById(R.id.text_luminozitate);
         textPortabil = findViewById(R.id.text_portabil);
         textTip = findViewById(R.id.text_tip);
-        // Preluare date primite de la Activitate2Lab4
-        Intent intent = getIntent();
-        if (intent.hasExtra("marca")) {
-            String marca = intent.getStringExtra("marca");
-            int rezolutie = intent.getIntExtra("rezolutie", 0);
-            double luminozitate = intent.getDoubleExtra("luminozitate", 0.0);
-            boolean portabil = intent.getBooleanExtra("portabil", false);
-            ViDeoproiector.TipProiector tip = (ViDeoproiector.TipProiector) intent.getSerializableExtra("tip");
 
-            ViDeoproiector proiector = new ViDeoproiector(marca, rezolutie, luminozitate, portabil, tip);
+        Intent intent = getIntent();
+        if (intent.hasExtra("proiector")) {
+            ViDeoProiector viDeoproiector = intent.getParcelableExtra("proiector");
+
+            textMarca.setText("Marca: " + viDeoproiector.getMarca());
+            textRezolutie.setText("Rezoluție: " + viDeoproiector.getRezolutie() + "p");
+            textLuminozitate.setText("Luminozitate: " + viDeoproiector.getLuminozitate() + " lumeni");
+            textPortabil.setText("Portabil: " + (viDeoproiector.isPortabil() ? "Da" : "Nu"));
+            textTip.setText("Tip: " + viDeoproiector.getTip().name());
         }
     }
 
@@ -99,16 +53,8 @@ public class Activitate1Lab4 extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            String marca = data.getStringExtra("marca");
-            int rezolutie = data.getIntExtra("rezolutie", 0);
-            double luminozitate = data.getDoubleExtra("luminozitate", 0.0);
-            boolean portabil = data.getBooleanExtra("portabil", false);
-            ViDeoproiector.TipProiector tip = (ViDeoproiector.TipProiector) data.getSerializableExtra("tip");
+            ViDeoProiector proiector = (ViDeoProiector) data.getParcelableExtra("proiector");
 
-            // Creăm obiectul ViDeoproiector
-            ViDeoproiector proiector = new ViDeoproiector(marca, rezolutie, luminozitate, portabil, tip);
-
-            // Afișăm datele în interfață
             textMarca.setText("Marca: " + proiector.getMarca());
             textRezolutie.setText("Rezoluție: " + proiector.getRezolutie() + "p");
             textLuminozitate.setText("Luminozitate: " + proiector.getLuminozitate() + " lumeni");

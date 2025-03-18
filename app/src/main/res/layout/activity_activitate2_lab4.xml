@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Activitate2Lab4">
 
-
     <EditText
         android:id="@+id/input_marca"
         android:layout_width="0dp"
@@ -45,7 +44,6 @@
         app:layout_constraintTop_toBottomOf="@id/input_luminozitate"
         app:layout_constraintStart_toStartOf="parent"/>
 
-
     <Spinner
         android:id="@+id/spinner_tip_proiector"
         android:layout_width="0dp"
@@ -54,14 +52,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- TextView pentru Data Fabricatie -->
+    <TextView
+        android:id="@+id/label_data_productiei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Fabricatie:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/spinner_tip_proiector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="8dp"/>
+
+    <!-- DatePicker mai mic pentru selectarea datei fabricatiei -->
+    <DatePicker
+        android:id="@+id/date_picker_production"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        app:layout_constraintTop_toBottomOf="@id/label_data_productiei"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="8dp"/>
+
     <Button
         android:id="@+id/button_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Trimite Proiector"
-        app:layout_constraintTop_toBottomOf="@id/spinner_tip_proiector"
+        app:layout_constraintTop_toBottomOf="@id/date_picker_production"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

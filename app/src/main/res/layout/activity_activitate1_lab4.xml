@@ -7,45 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Activitate1Lab4">
 
-    <TextView
-        android:id="@+id/text_marca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Marca: "
+
+    <ListView
+        android:id="@+id/listView_proiectoare"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/button4"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/text_rezolutie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rezoluție: "
-        app:layout_constraintTop_toBottomOf="@id/text_marca"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/text_luminozitate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Luminozitate: "
-        app:layout_constraintTop_toBottomOf="@id/text_rezolutie"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/text_portabil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Portabil: "
-        app:layout_constraintTop_toBottomOf="@id/text_luminozitate"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/text_tip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tip: "
-        app:layout_constraintTop_toBottomOf="@id/text_portabil"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
         android:id="@+id/button4"

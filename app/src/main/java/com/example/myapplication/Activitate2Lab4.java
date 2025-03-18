@@ -4,34 +4,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class Activitate2Lab4 extends AppCompatActivity {
+
+    private DatePicker datePickerProduction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_activitate2_lab4);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         ArrayAdapter<ViDeoProiector.TipProiector> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, ViDeoProiector.TipProiector.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinnerTipProiector = findViewById(R.id.spinner_tip_proiector);
         spinnerTipProiector.setAdapter(adapter);
+
+        datePickerProduction = findViewById(R.id.date_picker_production);
+        Date date = new Date();
+        datePickerProduction.setMaxDate(date.getTime());
+
 
         Button buttonSubmit = findViewById(R.id.button_submit);
         buttonSubmit.setOnClickListener(v -> {
@@ -41,7 +44,17 @@ public class Activitate2Lab4 extends AppCompatActivity {
             boolean portabil = ((Switch) findViewById(R.id.switch_portabil)).isChecked();
             ViDeoProiector.TipProiector tip = (ViDeoProiector.TipProiector) spinnerTipProiector.getSelectedItem();
 
-            ViDeoProiector proiector = new ViDeoProiector(marca, rezolutie, luminozitate, portabil, tip);
+            int day = datePickerProduction.getDayOfMonth();
+            int month = datePickerProduction.getMonth();
+            int year = datePickerProduction.getYear();
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, day);
+            Date dataProductiei = calendar.getTime();
+
+
+
+            ViDeoProiector proiector = new ViDeoProiector(marca, rezolutie, luminozitate, portabil, tip, dataProductiei);
 
             Intent returnIntent = new Intent();
             returnIntent.putExtra("proiector", proiector);

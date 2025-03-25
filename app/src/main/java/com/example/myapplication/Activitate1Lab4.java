@@ -19,6 +19,10 @@ import java.util.ArrayList;
 
 public class Activitate1Lab4 extends AppCompatActivity {
 
+
+    private static final int REQUEST_ADD_PROIECTOR = 1;
+    private static final int REQUEST_EDIT_PROIECTOR = 2;
+
     private ListView listViewProiectoare;
     private ArrayList<ViDeoProiector> listaProiectoare;
     private ArrayAdapter<ViDeoProiector> adapter;
@@ -38,12 +42,18 @@ public class Activitate1Lab4 extends AppCompatActivity {
         listViewProiectoare = findViewById(R.id.listView_proiectoare);
         listaProiectoare = new ArrayList<>();
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaProiectoare);
+        adapter = new ProiectorAdapter(this, listaProiectoare);
         listViewProiectoare.setAdapter(adapter);
 
         listViewProiectoare.setOnItemClickListener((parent, view, position, id) -> {
             ViDeoProiector proiector = listaProiectoare.get(position);
-            Toast.makeText(this, proiector.toString(), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, Activitate2Lab4.class);
+
+            intent.putExtra("proiector_de_editat", proiector);
+
+            intent.putExtra("pozitie", position);
+
+            startActivityForResult(intent, REQUEST_EDIT_PROIECTOR);
         });
 
         listViewProiectoare.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -56,17 +66,32 @@ public class Activitate1Lab4 extends AppCompatActivity {
         Button buttonAddProiector = findViewById(R.id.button4);
         buttonAddProiector.setOnClickListener(v -> {
             Intent intent = new Intent(this, Activitate2Lab4.class);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, REQUEST_ADD_PROIECTOR);
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+
+        if (resultCode == RESULT_OK && data != null) {
             ViDeoProiector proiector = data.getParcelableExtra("proiector");
-            listaProiectoare.add(proiector);
-            adapter.notifyDataSetChanged();
+
+            switch (requestCode) {
+
+                case REQUEST_ADD_PROIECTOR:
+                    listaProiectoare.add(proiector);
+                    adapter.notifyDataSetChanged();
+                    break;
+
+                case REQUEST_EDIT_PROIECTOR:
+                    int poz = data.getIntExtra("pozitie", -1);
+                    if (poz != -1) {
+                        listaProiectoare.set(poz, proiector);
+                        adapter.notifyDataSetChanged();
+                    }
+                    break;
+            }
         }
     }
 

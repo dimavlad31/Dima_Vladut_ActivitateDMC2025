@@ -15,6 +15,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class Activitate1Lab4 extends AppCompatActivity {
@@ -39,6 +43,12 @@ public class Activitate1Lab4 extends AppCompatActivity {
             return insets;
         });
 
+        Button buttonSettings = findViewById(R.id.button_settings);
+        buttonSettings.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        });
+
         listViewProiectoare = findViewById(R.id.listView_proiectoare);
         listaProiectoare = new ArrayList<>();
 
@@ -57,9 +67,30 @@ public class Activitate1Lab4 extends AppCompatActivity {
         });
 
         listViewProiectoare.setOnItemLongClickListener((parent, view, position, id) -> {
-            listaProiectoare.remove(position);
-            adapter.notifyDataSetChanged();
-            Toast.makeText(this, "Proiector șters", Toast.LENGTH_SHORT).show();
+            ViDeoProiector a = listaProiectoare.get(position);
+            String linie = a.toString();
+            try {
+                FileInputStream fis = openFileInput("favourite_objects.txt");
+                byte[] bytes = new byte[fis.available()];
+                fis.read(bytes);
+                fis.close();
+
+                String continutFisier = new String(bytes, StandardCharsets.UTF_8);
+
+                if (continutFisier.contains(linie)) {
+                    Toast.makeText(this, "Proiectorul este deja la favorite!", Toast.LENGTH_SHORT).show();
+                } else {
+                    try (FileOutputStream fos = openFileOutput("favourite_objects.txt", MODE_APPEND)) {
+                        fos.write((linie + "\n").getBytes(StandardCharsets.UTF_8));
+                        Toast.makeText(this, "Proiector salvat la favorite cu succes!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Eroare la accesarea fișierului.", Toast.LENGTH_LONG).show();
+            }
+
             return true;
         });
 

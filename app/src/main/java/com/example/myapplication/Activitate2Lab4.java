@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,7 +15,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 public class Activitate2Lab4 extends AppCompatActivity {
@@ -31,6 +42,10 @@ public class Activitate2Lab4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activitate2_lab4);
+        SharedPreferences preferences = getSharedPreferences("UserSettings", MODE_PRIVATE);
+        float textSize = preferences.getFloat("textSize", 16f);
+        String textColor = preferences.getString("textColor", "#000000");
+
 
         etMarca = findViewById(R.id.input_marca);
         etRezolutie = findViewById(R.id.input_rezolutie);
@@ -38,6 +53,15 @@ public class Activitate2Lab4 extends AppCompatActivity {
         switchPortabil = findViewById(R.id.switch_portabil);
         spinnerTipProiector = findViewById(R.id.spinner_tip_proiector);
         datePickerProduction = findViewById(R.id.date_picker_production);
+
+        etMarca.setTextSize(textSize);
+        etRezolutie.setTextSize(textSize);
+        etLuminozitate.setTextSize(textSize);
+
+        etMarca.setTextColor(Color.parseColor(textColor));
+        etRezolutie.setTextColor(Color.parseColor(textColor));
+        etLuminozitate.setTextColor(Color.parseColor(textColor));
+
 
         datePickerProduction.setMaxDate(new Date().getTime());
 
@@ -100,6 +124,29 @@ public class Activitate2Lab4 extends AppCompatActivity {
                 tip,
                 dataProductiei
         );
+        String linie = rezultat.toString();
+
+        try {
+            FileInputStream fis = openFileInput("objects.txt");
+            byte[] bytes = new byte[fis.available()];
+            fis.read(bytes);
+            fis.close();
+
+            String continutFisier = new String(bytes, StandardCharsets.UTF_8);
+
+            if (continutFisier.contains(linie)) {
+                Toast.makeText(this, "Proiectorul este deja aflat in fisierul obiecte!", Toast.LENGTH_SHORT).show();
+            } else {
+                try (FileOutputStream fos = openFileOutput("objects.txt", MODE_APPEND)) {
+                    fos.write((linie + "\n").getBytes(StandardCharsets.UTF_8));
+                    Toast.makeText(this, "Proiector salvat cu succes!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Eroare la accesarea fișierului.", Toast.LENGTH_LONG).show();
+        }
 
         Intent returnIntent = new Intent();
         returnIntent.putExtra("proiector", rezultat);

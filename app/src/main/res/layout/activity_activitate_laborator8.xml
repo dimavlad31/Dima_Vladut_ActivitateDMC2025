@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivitateLaborator8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="2dp">
+
+        <!-- Titlu -->
+        <TextView
+            android:id="@+id/tvIntroduMasina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu mașina"
+            android:textSize="10sp"
+            android:layout_marginBottom="2dp" />
+
+        <!-- Marca -->
+        <TextView
+            android:id="@+id/tvMarca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu marca:"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etMarca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Marca"
+            android:textSize="10sp"
+            android:layout_marginBottom="2dp"/>
+
+        <!-- Culoarea -->
+        <TextView
+            android:id="@+id/tvCuloare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu culoarea:"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etCuloare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Culoare"
+            android:textSize="10sp"
+            android:layout_marginBottom="2dp"/>
+
+        <!-- Cai Putere -->
+        <TextView
+            android:id="@+id/tvCaiPutere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu cai putere:"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etCaiPutere"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cai putere"
+            android:inputType="number"
+            android:textSize="10sp"
+            android:layout_marginBottom="2dp"/>
+
+        <!-- Buton: Introdu in DB -->
+        <Button
+            android:id="@+id/btnIntroduInBazaDeDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu în baza de date"
+            android:textSize="10sp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Buton: Vizualizeaza toate masinile -->
+        <Button
+            android:id="@+id/btnVizualizeazaMasini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vizualizează Mașini"
+            android:textSize="10sp"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Selectie culoare -->
+        <TextView
+            android:id="@+id/tvSelectieCuloare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu culoarea mașinilor:"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etSelectie_Culoare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Culoare mașină"
+            android:textSize="10sp"
+            android:layout_marginBottom="2dp"/>
+
+        <Button
+            android:id="@+id/btnVizualizeazaMasiniCuloare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vizualizează Mașini după culoare"
+            android:textSize="10sp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Selectie interval CP -->
+        <TextView
+            android:id="@+id/tvCaiPutereSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu interval de cai putere:"
+            android:textSize="10sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="2dp">
+
+            <EditText
+                android:id="@+id/etCaiPutereSelect_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Min CP"
+                android:inputType="number"
+                android:textSize="10sp" />
+
+            <EditText
+                android:id="@+id/etCaiPutereSelect_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Max CP"
+                android:inputType="number"
+                android:textSize="10sp"
+                android:layout_marginLeft="2dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnVizualizeazaCaiPutere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vizualizează după cai putere"
+            android:textSize="10sp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Ștergere CP mai mic -->
+        <TextView
+            android:id="@+id/tvDeleteCaiPutere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu nr de cai putere:"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etCaiPutereSelect_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cai putere"
+            android:inputType="number"
+            android:textSize="10sp"
+            android:layout_marginBottom="2dp"/>
+
+        <Button
+            android:id="@+id/btnDeleteCai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Șterge mașini cu CP mai mic"
+            android:textSize="10sp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Crește CP litera -->
+        <TextView
+            android:id="@+id/tvPrimaLitera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introdu inițiala mărcii:"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etPrimaLitera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex: A"
+            android:textSize="10sp"
+            android:layout_marginBottom="2dp"/>
+
+        <Button
+            android:id="@+id/btnCresteCP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crește CP (marca ce începe cu litera)"
+            android:textSize="10sp"
+            android:layout_marginBottom="4dp"/>
+
+
+        <ListView
+            android:id="@+id/lvMasini"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"
+            android:layout_marginBottom="4dp" />
+
+    </LinearLayout>
+</ScrollView>

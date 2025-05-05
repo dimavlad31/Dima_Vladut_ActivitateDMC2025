@@ -14,13 +14,13 @@
         android:id="@+id/editCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Introdu numele orașului" />
+        android:hint="Introdu numele orasului" />
 
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Caută vremea" />
+        android:text="Cauta vremea" />
 
     <TextView
         android:id="@+id/txtCityCode"

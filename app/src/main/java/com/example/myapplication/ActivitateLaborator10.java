@@ -66,7 +66,7 @@ public class ActivitateLaborator10 extends AppCompatActivity {
 
                 int responseCode = conn.getResponseCode();
                 if (responseCode != 200) {
-                    Log.e("DEBUG_API", "Cod răspuns HTTP: " + responseCode);
+                    Log.e("DEBUG_API", "Cod raspuns HTTP: " + responseCode);
                     return null;
                 }
 
@@ -79,7 +79,7 @@ public class ActivitateLaborator10 extends AppCompatActivity {
                 reader.close();
 
                 String json = result.toString().trim();
-                Log.d("DEBUG_API", "Răspuns JSON: " + json);
+                Log.d("DEBUG_API", "Raspuns JSON: " + json);
 
                 if (!json.startsWith("[")) {
                     return null;
@@ -103,14 +103,14 @@ public class ActivitateLaborator10 extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String cityCode) {
-            Log.d("CITY_CODE", "Codul orașului extras: " + cityCode);
+            Log.d("CITY_CODE", "Codul orasului extras: " + cityCode);
 
             if (cityCode != null && !cityCode.isEmpty()) {
                 txtCityCode.setText("City Code: " + cityCode);
                 String optiune = spinner.getSelectedItem().toString();
                 new GetWeatherTask().execute(cityCode, mapZile.get(optiune));
             } else {
-                txtResult.setText("Orașul nu a fost găsit.");
+                txtResult.setText("Orasul nu a fost gasit.");
                 txtCityCode.setText("");
             }
         }
@@ -156,7 +156,7 @@ public class ActivitateLaborator10 extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                return "Eroare la obținerea vremii.";
+                return "Eroare la obtinerea vremii.";
             }
         }
 
